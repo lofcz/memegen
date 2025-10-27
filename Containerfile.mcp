@@ -1,0 +1,43 @@
+FROM docker.io/python:3.13.7-bookworm AS build
+
+ARG ARG_PORT=5000
+
+# Install system dependencies
+RUN apt update && apt install --yes webp cmake curl
+RUN pip install poetry
+
+# Create the memegen user
+RUN useradd -md /opt/memegen -u 1000 memegen
+USER memegen
+
+# Set the working directory
+WORKDIR /opt/memegen
+
+# Copy project files
+COPY --chown=memegen templates /opt/memegen/templates
+COPY --chown=memegen scripts /opt/memegen/scripts
+COPY --chown=memegen fonts /opt/memegen/fonts
+COPY --chown=memegen docs /opt/memegen/docs
+COPY --chown=memegen bin /opt/memegen/bin
+COPY --chown=memegen app /opt/memegen/app
+COPY --chown=memegen pyproject.toml /opt/memegen/
+COPY --chown=memegen poetry.lock /opt/memegen/
+COPY --chown=memegen CHANGELOG.md /opt/memegen/CHANGELOG.md
+
+# Install project dependencies
+RUN poetry install --only=main
+
+# Install MCP dependencies
+RUN poetry run pip install mcp>=1.0.0 httpx>=0.27.0
+
+# Copy MCP server and entrypoint
+COPY --chown=memegen mcp_server.py /opt/memegen/
+COPY --chown=memegen --chmod=755 entrypoint-mcp.sh /opt/memegen/
+
+# Set environment variables
+ENV PATH="/opt/memegen/.local/bin:${PATH}"
+ENV PORT="${ARG_PORT}"
+ENV MEMEGEN_BASE_URL="http://localhost:5000"
+
+ENTRYPOINT ["/opt/memegen/entrypoint-mcp.sh"]
+

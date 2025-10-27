@@ -1,0 +1,7 @@
+# Manifest file for including additional files in the MCP server distribution
+
+include MCP_README.md
+include mcp_requirements.txt
+include mcp_server_config.json
+include LICENSE.txt
+

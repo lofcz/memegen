@@ -1,0 +1,194 @@
+================================================================================
+                    MEMEGEN MCP SERVER - COMPLETE OVERVIEW
+================================================================================
+
+WHAT IS THIS?
+-------------
+A Model Context Protocol (MCP) server that allows AI assistants like Claude
+to generate memes programmatically by connecting to your local Memegen instance.
+
+WHAT'S INCLUDED?
+----------------
+Core Files:
+  - mcp_server.py              Main MCP server implementation
+  - mcp_requirements.txt       Python dependencies for MCP server
+  - mcp_server_config.json     Example configuration for MCP clients
+
+Setup & Management Scripts:
+  - install_mcp.bat           Install MCP dependencies
+  - start_mcp.bat             Start the MCP server
+  - test_mcp.bat              Test MCP server functionality
+  - publish_mcp.bat           Publish to PyPI/npm/GitHub
+
+Documentation:
+  - MCP_README.md             Full documentation
+  - MCP_QUICK_START.md        5-minute setup guide
+  - MCP_OVERVIEW.txt          This file
+
+Distribution Files:
+  - setup_mcp.py              PyPI package setup
+  - package_mcp.json          npm package configuration
+  - MANIFEST_MCP.in           Distribution manifest
+
+Test Suite:
+  - test_mcp.py               Automated test suite
+
+QUICK START COMMANDS
+--------------------
+1. Install:    .\install_mcp.bat
+2. Test:       .\test_mcp.bat
+3. Start:      .\start_mcp.bat
+
+DIRECTORY STRUCTURE
+-------------------
+memegen/
+├── mcp_server.py              ← MCP server
+├── mcp_requirements.txt       ← Dependencies
+├── install_mcp.bat            ← Setup
+├── start_mcp.bat              ← Run server
+├── test_mcp.bat               ← Test
+├── MCP_README.md              ← Full docs
+└── MCP_QUICK_START.md         ← Quick guide
+
+AVAILABLE TOOLS (5 Tools)
+--------------------------
+1. list_templates           - List all meme templates
+2. get_template             - Get template details
+3. generate_meme            - Create memes from templates
+4. generate_custom_meme     - Create memes from custom images
+5. search_meme_examples     - Search for meme examples
+
+INTEGRATION OPTIONS
+-------------------
+✓ Claude Desktop            - Add to claude_desktop_config.json
+✓ MCP Inspector             - npx @modelcontextprotocol/inspector
+✓ Custom MCP Clients        - Standard stdio protocol
+✓ Direct Python Usage       - Import and use functions
+
+REQUIREMENTS
+------------
+- Python 3.10+
+- Memegen running on localhost:5000
+- Dependencies: mcp>=1.0.0, httpx>=0.27.0
+
+PUBLISHING OPTIONS
+------------------
+Run .\publish_mcp.bat to:
+  1. Publish to PyPI (pip install memegen-mcp-server)
+  2. Publish to npm (npx memegen-mcp-server)
+  3. Create GitHub Release
+  4. All of the above
+
+WORKFLOW
+--------
+Terminal 1:                    Terminal 2:
+.\start.bat                    .\start_mcp.bat
+(Memegen running)              (MCP server running)
+
+Your AI Assistant:
+"Create a 'fry' meme..."  →  [Calls MCP tools]  →  Meme generated!
+
+ARCHITECTURE
+------------
+AI Assistant (Claude/etc)
+         ↓
+    MCP Protocol (stdio)
+         ↓
+    mcp_server.py
+         ↓
+    HTTP Requests
+         ↓
+Memegen API (localhost:5000)
+         ↓
+    Generated Memes
+
+CONFIGURATION EXAMPLE (Claude Desktop)
+--------------------------------------
+Windows: %APPDATA%\Claude\claude_desktop_config.json
+Mac: ~/Library/Application Support/Claude/claude_desktop_config.json
+
+{
+  "mcpServers": {
+    "memegen": {
+      "command": "python",
+      "args": ["C:\\Users\\YourName\\memegen\\mcp_server.py"]
+    }
+  }
+}
+
+TESTING
+-------
+Before deployment, run tests:
+  .\test_mcp.bat
+
+Tests verify:
+  ✓ Connection to Memegen
+  ✓ Template listing
+  ✓ Template details
+  ✓ Meme generation
+  ✓ Search functionality
+
+TROUBLESHOOTING
+---------------
+Issue: Cannot connect
+Fix:   .\start.bat (start Memegen first)
+
+Issue: Module not found
+Fix:   .\install_mcp.bat (install dependencies)
+
+Issue: Claude doesn't see tools
+Fix:   - Check config path (use \\ on Windows)
+       - Restart Claude Desktop
+       - Verify with .\test_mcp.bat
+
+FEATURES
+--------
+✓ 500+ meme templates
+✓ Custom text on any template
+✓ Custom background images
+✓ Multiple image formats (png, jpg, gif, webp)
+✓ Animated memes support
+✓ Style variations
+✓ Custom fonts
+✓ No watermarks (if configured)
+✓ Full text formatting support
+✓ Template search & filtering
+
+EXAMPLE USAGE
+-------------
+User:  "List all meme templates about coding"
+AI:    [Calls list_templates with filter="coding"]
+       → Shows matching templates
+
+User:  "Create a 'fry' meme: 'Not sure if bug' and 'or feature'"
+AI:    [Calls generate_meme]
+       → Returns: http://localhost:5000/images/fry/Not_sure_if_bug/or_feature.png
+
+User:  "Show me details about the drake template"
+AI:    [Calls get_template with id="drake"]
+       → Shows template info, styles, examples
+
+SUPPORT & RESOURCES
+-------------------
+Documentation:  MCP_README.md
+Quick Start:    MCP_QUICK_START.md
+Test Suite:     .\test_mcp.bat
+MCP Docs:       https://modelcontextprotocol.io/
+Memegen:        https://github.com/jacebrowning/memegen
+
+LICENSE
+-------
+MIT License (same as Memegen)
+
+VERSION
+-------
+1.0.0
+
+AUTHOR
+------
+Memegen Contributors
+
+================================================================================
+                            HAPPY MEME GENERATING! 🎉
+================================================================================
+

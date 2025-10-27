@@ -1,0 +1,42 @@
+{
+  "name": "@memegen/mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for Memegen API - Generate memes programmatically via AI assistants",
+  "main": "mcp_server.py",
+  "bin": {
+    "memegen-mcp-server": "./mcp_server.py"
+  },
+  "scripts": {
+    "start": "python mcp_server.py",
+    "test": "python test_mcp.py"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "meme",
+    "memegen",
+    "ai",
+    "assistant",
+    "claude",
+    "anthropic"
+  ],
+  "author": "Memegen Contributors",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacebrowning/memegen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jacebrowning/memegen/issues"
+  },
+  "homepage": "https://github.com/jacebrowning/memegen#readme",
+  "engines": {
+    "python": ">=3.10"
+  },
+  "files": [
+    "mcp_server.py",
+    "MCP_README.md",
+    "mcp_requirements.txt"
+  ]
+}
+
